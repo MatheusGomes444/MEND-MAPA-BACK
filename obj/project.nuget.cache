@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "86JF2DhNkjo=",
+  "success": true,
+  "projectFilePath": "C:\\Projetos\\MEND MAPA\\MapaClientes.Api\\MapaClientes.Api.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\mathe\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.1\\microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
+    "C:\\Users\\mathe\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
