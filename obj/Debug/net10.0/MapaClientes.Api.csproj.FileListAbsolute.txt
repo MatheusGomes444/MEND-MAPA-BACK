@@ -31,3 +31,37 @@ C:\Projetos\MEND MAPA\MapaClientes.Api\obj\Debug\net10.0\refint\MapaClientes.Api
 C:\Projetos\MEND MAPA\MapaClientes.Api\obj\Debug\net10.0\MapaClientes.Api.pdb
 C:\Projetos\MEND MAPA\MapaClientes.Api\obj\Debug\net10.0\MapaClientes.Api.genruntimeconfig.cache
 C:\Projetos\MEND MAPA\MapaClientes.Api\obj\Debug\net10.0\ref\MapaClientes.Api.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\appsettings.Development.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\appsettings.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.staticwebassets.endpoints.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.exe
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.deps.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.runtimeconfig.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.pdb
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.csproj.AssemblyReference.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.AssemblyInfoInputs.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.AssemblyInfo.cs
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.csproj.CoreCompileInputs.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.sourcelink.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\scopedcss\bundle\MapaClientes.Api.styles.css
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.development.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\swae.build.ex.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClie.5B0A6532.Up2Date
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\refint\MapaClientes.Api.dll
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.pdb
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.genruntimeconfig.cache
+C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\ref\MapaClientes.Api.dll

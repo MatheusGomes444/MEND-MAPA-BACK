@@ -83,19 +83,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mathe\\.nuget\\packages\\": {}
+    "C:\\Users\\Asus I5\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Projetos\\MEND MAPA\\MapaClientes.Api\\MapaClientes.Api.csproj",
+      "projectUniqueName": "C:\\Users\\Asus I5\\Desktop\\projeto mapa mend\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
       "projectName": "MapaClientes.Api",
-      "projectPath": "C:\\Projetos\\MEND MAPA\\MapaClientes.Api\\MapaClientes.Api.csproj",
-      "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
-      "outputPath": "C:\\Projetos\\MEND MAPA\\MapaClientes.Api\\obj\\",
+      "projectPath": "C:\\Users\\Asus I5\\Desktop\\projeto mapa mend\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
+      "packagesPath": "C:\\Users\\Asus I5\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Asus I5\\Desktop\\projeto mapa mend\\MEND-MAPA-BACK\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Asus I5\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
@@ -149,7 +149,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

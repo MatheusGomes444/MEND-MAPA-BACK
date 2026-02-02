@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "86JF2DhNkjo=",
+  "dgSpecHash": "Ul3/+MV5JZ4=",
   "success": true,
-  "projectFilePath": "C:\\Projetos\\MEND MAPA\\MapaClientes.Api\\MapaClientes.Api.csproj",
+  "projectFilePath": "C:\\Users\\Asus I5\\Desktop\\projeto mapa mend\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\mathe\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.1\\microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
-    "C:\\Users\\mathe\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
+    "C:\\Users\\Asus I5\\.nuget\\packages\\microsoft.aspnetcore.openapi\\10.0.1\\microsoft.aspnetcore.openapi.10.0.1.nupkg.sha512",
+    "C:\\Users\\Asus I5\\.nuget\\packages\\microsoft.openapi\\2.0.0\\microsoft.openapi.2.0.0.nupkg.sha512"
   ],
   "logs": []
 }
