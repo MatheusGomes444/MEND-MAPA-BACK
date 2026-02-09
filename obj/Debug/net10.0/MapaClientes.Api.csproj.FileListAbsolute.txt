@@ -65,3 +65,37 @@ C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\refi
 C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.pdb
 C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.genruntimeconfig.cache
 C:\Users\Asus I5\Desktop\projeto mapa mend\MEND-MAPA-BACK\obj\Debug\net10.0\ref\MapaClientes.Api.dll
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\appsettings.Development.json
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\appsettings.json
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.staticwebassets.endpoints.json
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.exe
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.deps.json
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.runtimeconfig.json
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.dll
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\MapaClientes.Api.pdb
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
+C:\projetos\MEND-MAPA-BACK\bin\Debug\net10.0\Microsoft.OpenApi.dll
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.csproj.AssemblyReference.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.GeneratedMSBuildEditorConfig.editorconfig
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.AssemblyInfoInputs.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.AssemblyInfo.cs
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.csproj.CoreCompileInputs.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.MvcApplicationPartsAssemblyInfo.cs
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.MvcApplicationPartsAssemblyInfo.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.sourcelink.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\rjimswa.dswa.cache.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\rjsmrazor.dswa.cache.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\rjsmcshtml.dswa.cache.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\scopedcss\bundle\MapaClientes.Api.styles.css
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.json.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.development.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\staticwebassets.build.endpoints.json
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\swae.build.ex.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClie.5B0A6532.Up2Date
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.dll
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\refint\MapaClientes.Api.dll
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.pdb
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.genruntimeconfig.cache
+C:\projetos\MEND-MAPA-BACK\obj\Debug\net10.0\ref\MapaClientes.Api.dll
