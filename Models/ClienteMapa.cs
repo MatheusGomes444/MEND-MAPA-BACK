@@ -11,4 +11,7 @@ public class ClienteMapa
     // Importante para o mapa funcionar depois
     public double Latitude { get; set; }
     public double Longitude { get; set; }
+    
+    public string? NomeArquivo { get; set; }
+    public string? CaminhoArquivo { get; set; }
 }
