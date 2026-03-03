@@ -131,7 +131,7 @@ public async Task<IActionResult> Geocode(string endereco)
 
         return NoContent();
     }
-
+ 
 
     private class NominatimResponse
     {
