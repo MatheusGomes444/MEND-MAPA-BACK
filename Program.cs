@@ -22,10 +22,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-// ========================= JWT AUTHENTICATION =========================
+// ========================= JWT =========================
 var jwtKey = builder.Configuration["Jwt:Key"];
 if (string.IsNullOrEmpty(jwtKey))
-    throw new Exception("Chave JWT não encontrada em appsettings.json");
+    throw new Exception("Chave JWT não encontrada");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -51,9 +51,10 @@ app.UseCors("AllowAll");
 
 app.UseAuthentication();
 app.UseAuthorization();
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-app.Run($"http://0.0.0.0:{port}");
 
+// 🔥 MUITO IMPORTANTE — antes do Run
 app.MapControllers();
 
-app.Run();
+// 🔥 Render usa essa porta
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+app.Run($"http://0.0.0.0:{port}");
