@@ -90,6 +90,19 @@ catch (Exception ex)
         await _context.SaveChangesAsync();
         return NoContent();
     }
+    [HttpGet("test-db")]
+public async Task<IActionResult> TestDb()
+{
+    try
+    {
+        await _context.Database.CanConnectAsync();
+        return Ok("Conectou no banco!");
+    }
+    catch (Exception ex)
+    {
+        return BadRequest(ex.Message);
+    }
+}
 
     // GEOCODE
     [HttpGet("geocode")]
