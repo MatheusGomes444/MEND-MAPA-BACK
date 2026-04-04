@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\projetos\\MEND-MAPA-BACK\\MapaClientes.Api.csproj": {}
+    "C:\\Projetos\\MEND MAPA\\MEND-MAPA-BACK\\MapaClientes.Api.csproj": {}
   },
   "projects": {
-    "C:\\projetos\\MEND-MAPA-BACK\\MapaClientes.Api.csproj": {
+    "C:\\Projetos\\MEND MAPA\\MEND-MAPA-BACK\\MapaClientes.Api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\projetos\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
+        "projectUniqueName": "C:\\Projetos\\MEND MAPA\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
         "projectName": "MapaClientes.Api",
-        "projectPath": "C:\\projetos\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
-        "packagesPath": "C:\\Users\\Dell Event\\.nuget\\packages\\",
-        "outputPath": "C:\\projetos\\MEND-MAPA-BACK\\obj\\",
+        "projectPath": "C:\\Projetos\\MEND MAPA\\MEND-MAPA-BACK\\MapaClientes.Api.csproj",
+        "packagesPath": "C:\\Users\\mathe\\.nuget\\packages\\",
+        "outputPath": "C:\\Projetos\\MEND MAPA\\MEND-MAPA-BACK\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Dell Event\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\mathe\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
@@ -44,9 +44,31 @@
         "net10.0": {
           "targetAlias": "net10.0",
           "dependencies": {
+            "BCrypt.Net-Next": {
+              "target": "Package",
+              "version": "[4.1.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[10.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[10.0.5, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[10.0.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.17.0, )"
             }
           },
           "imports": [
@@ -68,7 +90,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.101/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
