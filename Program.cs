@@ -19,11 +19,17 @@ builder.Services.AddCors(options =>
 });
 
 // ========================= DATABASE =========================
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrEmpty(connectionString))
+    throw new Exception("Connection string não encontrada");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 // ========================= JWT =========================
 var jwtKey = builder.Configuration["Jwt:Key"];
+
 if (string.IsNullOrEmpty(jwtKey))
     throw new Exception("Chave JWT não encontrada");
 
@@ -52,9 +58,9 @@ app.UseCors("AllowAll");
 app.UseAuthentication();
 app.UseAuthorization();
 
-// 🔥 MUITO IMPORTANTE — antes do Run
+// ========================= ENDPOINTS =========================
 app.MapControllers();
 
-// 🔥 Render usa essa porta
+// ========================= PORT (RENDER) =========================
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 app.Run($"http://0.0.0.0:{port}");
