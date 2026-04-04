@@ -90,20 +90,19 @@ catch (Exception ex)
         await _context.SaveChangesAsync();
         return NoContent();
     }
-    [HttpGet("test-db")]
+   [HttpGet("test-db")]
 public async Task<IActionResult> TestDb()
 {
     try
     {
-        await _context.Database.CanConnectAsync();
-        return Ok("Conectou no banco!");
+        var data = await _context.Clientes.ToListAsync(); // força query real
+        return Ok(data.Count);
     }
     catch (Exception ex)
     {
         return BadRequest(ex.Message);
     }
 }
-
     // GEOCODE
     [HttpGet("geocode")]
     public async Task<IActionResult> Geocode(string endereco)
