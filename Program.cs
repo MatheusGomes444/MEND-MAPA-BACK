@@ -49,7 +49,8 @@ builder.Services.AddAuthentication(options =>
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKey))
     };
 });
-
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+AppContext.SetSwitch("System.Net.DisableIPv6", true);
 var app = builder.Build();
 
 // ========================= MIDDLEWARE =========================
