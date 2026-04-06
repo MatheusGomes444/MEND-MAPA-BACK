@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using MapaClientes.Api.Data;
 using MapaClientes.Api.Models;
 using System.Globalization;
+using System.Net.Http.Headers;
 
 namespace MapaClientes.Api.Controllers;
 
@@ -11,13 +12,15 @@ namespace MapaClientes.Api.Controllers;
 public class MapaController : ControllerBase
 {
     private readonly AppDbContext _context;
+    private readonly IConfiguration _config;
 
-    public MapaController(AppDbContext context)
+    public MapaController(AppDbContext context, IConfiguration config)
     {
         _context = context;
+        _config = config;
     }
 
-    // GET TODOS
+    // ================= GET =================
     [HttpGet]
     public async Task<IActionResult> Get()
     {
@@ -25,7 +28,7 @@ public class MapaController : ControllerBase
         return Ok(clientes);
     }
 
-    // POST (SALVAR)
+    // ================= POST =================
     [HttpPost]
     public async Task<IActionResult> Post([FromForm] IFormFile? arquivo)
     {
@@ -48,38 +51,79 @@ public class MapaController : ControllerBase
         if (double.TryParse(Request.Form["Longitude"], NumberStyles.Any, CultureInfo.InvariantCulture, out double lng))
             model.Longitude = lng;
 
+        // ================= UPLOAD SUPABASE =================
         if (arquivo != null && arquivo.Length > 0)
         {
-            var pastaUploads = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
-            if (!Directory.Exists(pastaUploads)) Directory.CreateDirectory(pastaUploads);
+            try
+            {
+                var supabaseUrl = _config["Supabase:Url"];
+                var supabaseKey = _config["Supabase:Key"];
+                var bucket = _config["Supabase:Bucket"];
 
-            var nomeUnico = $"{Guid.NewGuid()}_{arquivo.FileName}";
-            var caminhoCompleto = Path.Combine(pastaUploads, nomeUnico);
+                var nomeUnico = $"{Guid.NewGuid()}_{arquivo.FileName}";
 
-            using var stream = new FileStream(caminhoCompleto, FileMode.Create);
-            await arquivo.CopyToAsync(stream);
+                using var client = new HttpClient();
 
-            model.NomeArquivo = arquivo.FileName;
-            model.CaminhoArquivo = nomeUnico;
+                // 🔐 Headers obrigatórios
+                client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", supabaseKey);
+
+                client.DefaultRequestHeaders.Add("apikey", supabaseKey);
+
+                var uploadUrl = $"{supabaseUrl}/storage/v1/object/{bucket}/{nomeUnico}";
+
+                using var fileStream = arquivo.OpenReadStream();
+                using var content = new StreamContent(fileStream);
+
+                content.Headers.ContentType =
+                    new MediaTypeHeaderValue(arquivo.ContentType);
+
+                // 🔥 IMPORTANTE: PUT (não POST)
+                var response = await client.PutAsync(uploadUrl, content);
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    var erro = await response.Content.ReadAsStringAsync();
+                    return StatusCode(500, new
+                    {
+                        erro = "Erro ao enviar para Supabase",
+                        detalhe = erro
+                    });
+                }
+
+                // 🔥 SALVA URL COMPLETA (MELHOR PRÁTICA)
+                model.NomeArquivo = arquivo.FileName;
+                model.CaminhoArquivo =
+                    $"{supabaseUrl}/storage/v1/object/public/{bucket}/{nomeUnico}";
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new
+                {
+                    erro = "Erro no upload",
+                    detalhe = ex.Message
+                });
+            }
         }
 
- try
-{
-    _context.Clientes.Add(model);
-    await _context.SaveChangesAsync();
-    return Ok(model);
-}
-catch (Exception ex)
-{
-    return StatusCode(500, new
-    {
-        erro = ex.Message,
-        detalhe = ex.InnerException?.Message
-    });
-}
+        // ================= SALVAR NO BANCO =================
+        try
+        {
+            _context.Clientes.Add(model);
+            await _context.SaveChangesAsync();
+            return Ok(model);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new
+            {
+                erro = ex.Message,
+                detalhe = ex.InnerException?.Message
+            });
+        }
     }
 
-    // DELETE
+    // ================= DELETE =================
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(int id)
     {
@@ -90,20 +134,8 @@ catch (Exception ex)
         await _context.SaveChangesAsync();
         return NoContent();
     }
-   [HttpGet("test-db")]
-public async Task<IActionResult> TestDb()
-{
-    try
-    {
-        var data = await _context.Clientes.ToListAsync(); // força query real
-        return Ok(data.Count);
-    }
-    catch (Exception ex)
-    {
-        return BadRequest(ex.Message);
-    }
-}
-    // GEOCODE
+
+    // ================= GEOCODE =================
     [HttpGet("geocode")]
     public async Task<IActionResult> Geocode(string endereco)
     {

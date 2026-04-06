@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MapaClientes.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8b78cc20581a2956946706d6971b2b5ce41a954c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b21fb30340ac925e17b1ca56a492dd6a75dc88e6")]
 [assembly: System.Reflection.AssemblyProductAttribute("MapaClientes.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MapaClientes.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
