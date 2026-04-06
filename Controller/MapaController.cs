@@ -125,15 +125,29 @@ public class MapaController : ControllerBase
 
     // ================= DELETE =================
     [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+public async Task<IActionResult> Delete(int id)
+{
+    try
     {
         var cliente = await _context.Clientes.FindAsync(id);
-        if (cliente == null) return NotFound();
+        if (cliente == null)
+            return NotFound();
 
         _context.Clientes.Remove(cliente);
         await _context.SaveChangesAsync();
-        return NoContent();
+
+        return Ok(new { mensagem = "Deletado com sucesso" });
     }
+    catch (Exception ex)
+    {
+        return StatusCode(500, new
+        {
+            erro = "Erro ao deletar",
+            detalhe = ex.Message,
+            inner = ex.InnerException?.Message
+        });
+    }
+}
 
     // ================= GEOCODE =================
     [HttpGet("geocode")]
