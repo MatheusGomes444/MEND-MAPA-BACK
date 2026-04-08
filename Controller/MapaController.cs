@@ -148,7 +148,7 @@ public async Task<IActionResult> TestDb()
     try
     {
         var count = await _context.Clientes.CountAsync();
-        return Ok($"Conectou! Total: {count}");
+        return Ok($"Banco conectado! Total de registros: {count}");
     }
     catch (Exception ex)
     {
