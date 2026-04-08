@@ -25,16 +25,25 @@ builder.Services.AddCors(options =>
 // ================= DATABASE =================
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
+// 🔥 VALIDA SE EXISTE
+if (string.IsNullOrEmpty(connectionString))
+    throw new Exception("Connection string não encontrada!");
+
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
     {
-        // 🔥 evita falhas temporárias (Railway/Supabase)
-        npgsqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+        // 🔥 retry automático (instabilidade de rede)
+        npgsqlOptions.EnableRetryOnFailure(
+            maxRetryCount: 5,
+            maxRetryDelay: TimeSpan.FromSeconds(10),
+            errorCodesToAdd: null
+        );
     })
 );
 
 // ================= JWT =================
 var jwtKey = builder.Configuration["Jwt:Key"];
+
 if (string.IsNullOrEmpty(jwtKey))
     throw new Exception("Chave JWT não encontrada");
 
@@ -51,7 +60,9 @@ builder.Services.AddAuthentication(options =>
         ValidateAudience = false,
         ValidateLifetime = true,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(jwtKey))
+        IssuerSigningKey = new SymmetricSecurityKey(
+            Encoding.ASCII.GetBytes(jwtKey)
+        )
     };
 });
 
