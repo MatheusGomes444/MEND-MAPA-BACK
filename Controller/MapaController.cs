@@ -142,6 +142,19 @@ public async Task<IActionResult> Delete(int id)
 
     return Ok(new { mensagem = "Deletado com sucesso" });
 }
+[HttpGet("test-db")]
+public async Task<IActionResult> TestDb()
+{
+    try
+    {
+        var count = await _context.Clientes.CountAsync();
+        return Ok($"Conectou! Total: {count}");
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, ex.ToString());
+    }
+}
 
     // ================= GEOCODE =================
     [HttpGet("geocode")]
