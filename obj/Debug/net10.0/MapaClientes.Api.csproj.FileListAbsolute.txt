@@ -231,3 +231,14 @@ C:\Projetos\MEND MAPA\MEND-MAPA-BACK\obj\Debug\net10.0\refint\MapaClientes.Api.d
 C:\Projetos\MEND MAPA\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.pdb
 C:\Projetos\MEND MAPA\MEND-MAPA-BACK\obj\Debug\net10.0\MapaClientes.Api.genruntimeconfig.cache
 C:\Projetos\MEND MAPA\MEND-MAPA-BACK\obj\Debug\net10.0\ref\MapaClientes.Api.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\MimeMapping.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Core.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Functions.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Gotrue.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Postgrest.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Realtime.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Supabase.Storage.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\System.Reactive.dll
+C:\Projetos\MEND MAPA\MEND-MAPA-BACK\bin\Debug\net10.0\Websocket.Client.dll
