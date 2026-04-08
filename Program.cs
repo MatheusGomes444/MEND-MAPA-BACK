@@ -6,14 +6,14 @@ using MapaClientes.Api.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-
+// ================= PORTA (Railway) =================
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 
-// CONTROLLERS
+// ================= CONTROLLERS =================
 builder.Services.AddControllers();
 
-// CORS
+// ================= CORS =================
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
@@ -22,11 +22,18 @@ builder.Services.AddCors(options =>
               .AllowAnyHeader());
 });
 
-// DATABASE
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+// ================= DATABASE =================
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// JWT
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(connectionString, npgsqlOptions =>
+    {
+        // 🔥 evita falhas temporárias (Railway/Supabase)
+        npgsqlOptions.EnableRetryOnFailure(5, TimeSpan.FromSeconds(10), null);
+    })
+);
+
+// ================= JWT =================
 var jwtKey = builder.Configuration["Jwt:Key"];
 if (string.IsNullOrEmpty(jwtKey))
     throw new Exception("Chave JWT não encontrada");
@@ -50,7 +57,7 @@ builder.Services.AddAuthentication(options =>
 
 var app = builder.Build();
 
-// MIDDLEWARE
+// ================= MIDDLEWARE =================
 app.UseCors("AllowAll");
 
 app.UseAuthentication();
@@ -58,4 +65,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run(); 
+app.Run();
