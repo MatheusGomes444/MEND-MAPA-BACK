@@ -24,10 +24,14 @@ public class MapaController : ControllerBase
     [HttpGet]
     public async Task<IActionResult> Get()
     {
-        var clientes = await _context.Clientes.ToListAsync();
+        var agora = DateTime.UtcNow;
+
+        var clientes = await _context.Clientes
+            .Where(c => c.ExpiraEm == null || c.ExpiraEm > agora)
+            .ToListAsync();
+
         return Ok(clientes);
     }
-
     // ================= POST =================
     [HttpPost]
     public async Task<IActionResult> Post([FromForm] IFormFile? arquivo)
@@ -105,6 +109,14 @@ public class MapaController : ControllerBase
                 });
             }
         }
+        // EXPIRAÇÃO
+        if (!string.IsNullOrEmpty(Request.Form["ExpiraEm"]))
+        {
+            if (DateTime.TryParse(Request.Form["ExpiraEm"], out DateTime expira))
+            {
+                model.ExpiraEm = expira.ToUniversalTime();
+            }
+        }
 
         // ================= SALVAR NO BANCO =================
         try
@@ -124,37 +136,37 @@ public class MapaController : ControllerBase
     }
 
     // ================= DELETE =================
-   [HttpDelete("{id}")]
-public async Task<IActionResult> Delete(int id)
-{
-    var cliente = await _context.Clientes.FindAsync(id);
-
-    if (cliente == null)
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(int id)
     {
-        return NotFound(new
+        var cliente = await _context.Clientes.FindAsync(id);
+
+        if (cliente == null)
         {
-            mensagem = $"Cliente com ID {id} não encontrado"
-        });
-    }
+            return NotFound(new
+            {
+                mensagem = $"Cliente com ID {id} não encontrado"
+            });
+        }
 
-    _context.Clientes.Remove(cliente);
-    await _context.SaveChangesAsync();
+        _context.Clientes.Remove(cliente);
+        await _context.SaveChangesAsync();
 
-    return Ok(new { mensagem = "Deletado com sucesso" });
-}
-[HttpGet("test-db")]
-public async Task<IActionResult> TestDb()
-{
-    try
-    {
-        var count = await _context.Clientes.CountAsync();
-        return Ok($"Banco conectado! Total de registros: {count}");
+        return Ok(new { mensagem = "Deletado com sucesso" });
     }
-    catch (Exception ex)
+    [HttpGet("test-db")]
+    public async Task<IActionResult> TestDb()
     {
-        return StatusCode(500, ex.ToString());
+        try
+        {
+            var count = await _context.Clientes.CountAsync();
+            return Ok($"Banco conectado! Total de registros: {count}");
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, ex.ToString());
+        }
     }
-}
 
     // ================= GEOCODE =================
     [HttpGet("geocode")]

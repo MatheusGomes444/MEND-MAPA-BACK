@@ -46,5 +46,8 @@ namespace MapaClientes.Api.Models
 
         [Column("caminhoarquivo")]
         public string? CaminhoArquivo { get; set; }
+
+        [Column("expiraem")]
+        public DateTime? ExpiraEm { get; set; }
     }
 }

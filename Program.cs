@@ -33,8 +33,7 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 if (string.IsNullOrEmpty(connectionString))
     throw new Exception("Connection string não encontrada!");
 
-// 🔥 LOG PRA DEBUG (pode remover depois)
-Console.WriteLine("Connection String carregada!");
+    builder.Services.AddHostedService<ExpiracaoService>();
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString, npgsqlOptions =>
