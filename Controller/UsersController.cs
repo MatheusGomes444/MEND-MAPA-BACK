@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/users")]
-[Authorize] // 🔥 IMPORTANTE (resolve o 401)
+[Authorize]
 public class UsersController : ControllerBase
 {
     private readonly AppDbContext _context;
@@ -25,6 +25,7 @@ public class UsersController : ControllerBase
         return await _context.Usuarios.FindAsync(int.Parse(userId));
     }
 
+    // ✅ EDITAR PERFIL
     [HttpPut("me")]
     public async Task<IActionResult> UpdateProfile([FromBody] UpdateUserDto dto)
     {
@@ -39,20 +40,23 @@ public class UsersController : ControllerBase
         return Ok(user);
     }
 
+    // ✅ ALTERAR SENHA (COM HASH)
     [HttpPut("change-password")]
     public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto dto)
     {
         var user = await GetUser();
         if (user == null) return Unauthorized();
 
-        if (user.SenhaHash != dto.SenhaAtual)
+        // 🔥 VERIFICA HASH CORRETAMENTE
+        if (!BCrypt.Net.BCrypt.Verify(dto.SenhaAtual, user.SenhaHash))
             return BadRequest("Senha incorreta");
 
-        user.SenhaHash = dto.NovaSenha;
+        // 🔥 SALVA NOVA SENHA COM HASH
+        user.SenhaHash = BCrypt.Net.BCrypt.HashPassword(dto.NovaSenha);
 
         await _context.SaveChangesAsync();
 
-        return Ok();
+        return Ok(new { message = "Senha atualizada com sucesso" });
     }
 }
 

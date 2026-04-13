@@ -45,20 +45,36 @@ namespace MapaClientes.Api.Controllers
         public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
             var user = await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == request.Email);
+
             if (user == null || !BCrypt.Net.BCrypt.Verify(request.Password, user.SenhaHash))
                 return Unauthorized(new { message = "Email ou senha inválidos" });
 
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_config["Jwt:Key"]);
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim(ClaimTypes.Name, user.Email) }),
+                Subject = new ClaimsIdentity(new[]
+                {
+                    // 🔥 ESSENCIAL (resolve o 401)
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Name, user.Email)
+                }),
                 Expires = DateTime.UtcNow.AddHours(8),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature
+                )
             };
+
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return Ok(new { token = tokenHandler.WriteToken(token), email = user.Email, nome = user.Nome });
+            return Ok(new
+            {
+                token = tokenHandler.WriteToken(token),
+                email = user.Email,
+                nome = user.Nome
+            });
         }
     }
 }
