@@ -2,9 +2,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MapaClientes.Api.Data;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 [ApiController]
 [Route("api/users")]
+[Authorize] // 🔥 IMPORTANTE (resolve o 401)
 public class UsersController : ControllerBase
 {
     private readonly AppDbContext _context;
