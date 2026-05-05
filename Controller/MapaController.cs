@@ -4,6 +4,7 @@ using MapaClientes.Api.Data;
 using MapaClientes.Api.Models;
 using System.Globalization;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace MapaClientes.Api.Controllers;
 
@@ -22,7 +23,8 @@ public class MapaController : ControllerBase
 
     // ================= GET =================
     [HttpGet]
-    public async Task<IActionResult> Get()
+    [Authorize]
+        public async Task<IActionResult> Get()
     {
         var agora = DateTime.UtcNow;
 
@@ -34,6 +36,7 @@ public class MapaController : ControllerBase
     }
     // ================= POST =================
     [HttpPost]
+    [Authorize]
     public async Task<IActionResult> Post([FromForm] IFormFile? arquivo)
     {
         var model = new ClienteMapa
@@ -43,7 +46,8 @@ public class MapaController : ControllerBase
             Posto = Request.Form["Posto"],
             Equipamento = Request.Form["Equipamento"],
             Contrato = Request.Form["Contrato"],
-            Observacao = Request.Form["Observacao"]
+            Observacao = Request.Form["Observacao"],
+            CriadoPor   = User.FindFirst("nome")?.Value ?? "Desconhecido"  // ✅ ADICIONE
         };
 
         if (int.TryParse(Request.Form["Radios"], out int radios))
@@ -95,7 +99,7 @@ public class MapaController : ControllerBase
                     });
                 }
 
-                // 🔥 SALVA URL COMPLETA (MELHOR PRÁTICA)
+                //  SALVA URL COMPLETA (MELHOR PRÁTICA)
                 model.NomeArquivo = arquivo.FileName;
                 model.CaminhoArquivo =
                     $"{supabaseUrl}/storage/v1/object/public/{bucket}/{nomeUnico}";
@@ -136,24 +140,86 @@ public class MapaController : ControllerBase
     }
 
     // ================= DELETE =================
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
+    // ================= PUT (EDITAR) =================
+[HttpPut("{id}")]
+[Authorize]
+public async Task<IActionResult> Put(int id, [FromForm] IFormFile? arquivo)
+{
+    var cliente = await _context.Clientes.FindAsync(id);
+
+    if (cliente == null)
+        return NotFound(new { mensagem = $"Cliente com ID {id} não encontrado" });
+
+    // Atualiza os campos de texto (mesmo padrão do seu POST)
+    cliente.Endereco    = Request.Form["Endereco"];
+    cliente.Cliente     = Request.Form["Cliente"];
+    cliente.Posto       = Request.Form["Posto"];
+    cliente.Equipamento = Request.Form["Equipamento"];
+    cliente.Contrato    = Request.Form["Contrato"];
+    cliente.Observacao  = Request.Form["Observacao"];
+
+    if (int.TryParse(Request.Form["Radios"], out int radios))
+        cliente.Radios = radios;
+
+    if (!string.IsNullOrEmpty(Request.Form["ExpiraEm"]))
     {
-        var cliente = await _context.Clientes.FindAsync(id);
-
-        if (cliente == null)
-        {
-            return NotFound(new
-            {
-                mensagem = $"Cliente com ID {id} não encontrado"
-            });
-        }
-
-        _context.Clientes.Remove(cliente);
-        await _context.SaveChangesAsync();
-
-        return Ok(new { mensagem = "Deletado com sucesso" });
+        if (DateTime.TryParse(Request.Form["ExpiraEm"], out DateTime expira))
+            cliente.ExpiraEm = expira.ToUniversalTime();
     }
+    else
+    {
+        cliente.ExpiraEm = null;
+    }
+
+    // Só faz upload se mandou arquivo novo
+    if (arquivo != null && arquivo.Length > 0)
+    {
+        try
+        {
+            var supabaseUrl = _config["Supabase:Url"];
+            var supabaseKey = _config["Supabase:Key"];
+            var bucket      = _config["Supabase:Bucket"];
+            var nomeUnico   = $"{Guid.NewGuid()}_{arquivo.FileName}";
+
+            using var http = new HttpClient();
+            http.DefaultRequestHeaders.Authorization =
+                new AuthenticationHeaderValue("Bearer", supabaseKey);
+            http.DefaultRequestHeaders.Add("apikey", supabaseKey);
+
+            var uploadUrl = $"{supabaseUrl}/storage/v1/object/{bucket}/{nomeUnico}";
+
+            using var fileStream = arquivo.OpenReadStream();
+            using var content    = new StreamContent(fileStream);
+            content.Headers.ContentType = new MediaTypeHeaderValue(arquivo.ContentType);
+
+            var response = await http.PutAsync(uploadUrl, content);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                var erro = await response.Content.ReadAsStringAsync();
+                return StatusCode(500, new { erro = "Erro ao enviar para Supabase", detalhe = erro });
+            }
+
+            cliente.NomeArquivo    = arquivo.FileName;
+            cliente.CaminhoArquivo = $"{supabaseUrl}/storage/v1/object/public/{bucket}/{nomeUnico}";
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, new { erro = "Erro no upload", detalhe = ex.Message });
+        }
+    }
+
+    try
+    {
+        await _context.SaveChangesAsync();
+        return Ok(cliente);
+    }
+    catch (Exception ex)
+    {
+        return StatusCode(500, new { erro = ex.Message, detalhe = ex.InnerException?.Message });
+    }
+} 
+
     [HttpGet("test-db")]
     public async Task<IActionResult> TestDb()
     {
@@ -197,4 +263,7 @@ public class MapaController : ControllerBase
         public string lat { get; set; } = string.Empty;
         public string lon { get; set; } = string.Empty;
     }
+
+    
 }
+

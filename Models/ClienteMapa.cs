@@ -49,5 +49,8 @@ namespace MapaClientes.Api.Models
 
         [Column("expiraem")]
         public DateTime? ExpiraEm { get; set; }
+
+        [Column("criadopor")]
+         public string? CriadoPor { get; set; }
     }
 }
