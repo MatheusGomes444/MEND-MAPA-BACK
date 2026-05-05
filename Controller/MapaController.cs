@@ -140,6 +140,23 @@ public class MapaController : ControllerBase
     }
 
     // ================= DELETE =================
+
+    [HttpDelete("{id}")]
+[Authorize]
+public async Task<IActionResult> Delete(int id)
+{
+    var cliente = await _context.Clientes.FindAsync(id);
+
+    if (cliente == null)
+        return NotFound(new { mensagem = $"Cliente com ID {id} não encontrado" });
+
+    _context.Clientes.Remove(cliente);
+    await _context.SaveChangesAsync();
+
+    return Ok(new { mensagem = "Posto removido com sucesso" });
+}
+
+
     // ================= PUT (EDITAR) =================
 [HttpPut("{id}")]
 [Authorize]
