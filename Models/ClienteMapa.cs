@@ -11,16 +11,16 @@ namespace MapaClientes.Api.Models
         public int Id { get; set; }
 
         [Required]
-        [Column("endereco")]
-        public string Endereco { get; set; } = string.Empty;
-
-        [Required]
         [Column("cliente")]
         public string Cliente { get; set; } = string.Empty;
 
         [Required]
         [Column("posto")]
         public string Posto { get; set; } = string.Empty;
+
+        [Required]
+        [Column("endereco")]
+        public string Endereco { get; set; } = string.Empty;
 
         [Required]
         [Column("equipamento")]
@@ -34,6 +34,14 @@ namespace MapaClientes.Api.Models
 
         [Column("observacao")]
         public string? Observacao { get; set; }
+
+        [Column("frequencia")]
+        public string Frequencia { get; set; } = "Frequência 1";
+
+        // ✅ CORRIGIDO: PascalCase consistente com o restante do modelo
+        // O atributo [Column] garante que o EF Core mapeie para "alcance" no banco
+        [Column("alcance")]
+        public int Alcance { get; set; } = 2000;
 
         [Column("latitude")]
         public double Latitude { get; set; } = 0.0;
@@ -51,6 +59,6 @@ namespace MapaClientes.Api.Models
         public DateTime? ExpiraEm { get; set; }
 
         [Column("criadopor")]
-         public string? CriadoPor { get; set; }
+        public string? CriadoPor { get; set; }
     }
 }
